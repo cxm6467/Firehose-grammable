@@ -1,6 +1,20 @@
 require 'rails_helper'
 
 RSpec.describe GramsController, type: :controller do
+  ## Test for show action in the grams controller
+  describe "grams#show action" do
+    it "should successfully show the page if the gram is found" do
+      gram = FactoryGirl.create(:gram)
+      get :show, params: { id: gram.id }
+      expect(response).to have_http_status(:success)
+    end
+
+    it "should return a 404 error if the gram is not found" do
+      get :show, params: { id: 'INVALID_USR'}
+      expect(response).to have_http_status(:not_found)
+    end
+  end
+
   ## Test for an index action from the Grams Controller
   describe "grams#index action" do
     it "should successfully show the page" do
@@ -28,7 +42,7 @@ RSpec.describe GramsController, type: :controller do
 
   ## Test for successful creation of a Gram
   describe "grams#create action" do
-    
+
     it "should require users to be logged in" do
       post :create, params: { gram: { message: "Hello" } }
       expect(response).to redirect_to new_user_session_path
@@ -48,7 +62,7 @@ RSpec.describe GramsController, type: :controller do
     end
 
     it "should properly deal with validation errors" do
-      
+
       ## Dummy User
       user = FactoryGirl.create(:user)
       sign_in user
