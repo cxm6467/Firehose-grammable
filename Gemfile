@@ -70,3 +70,12 @@ gem 'simple_form'
 
 ## Users (Devise)
 gem 'devise'
+
+## Carrier Wave
+gem 'carrierwave', '~> 1.0'
+
+## Figaro
+gem 'figaro'
+
+## FoG
+gem "fog-aws"
