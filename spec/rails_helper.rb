@@ -27,6 +27,8 @@ require 'rspec/rails'
 ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
+  ## Picture Validation
+  include ActionDispatch::TestProcess
   ## Add the ability to act as a signed-in user
   config.include Devise::Test::ControllerHelpers, type: :controller
   config.include Devise::Test::ControllerHelpers, type: :view
