@@ -79,3 +79,6 @@ gem 'figaro'
 
 ## FoG
 gem "fog-aws"
+
+## resss
+gem "mini_magick"
